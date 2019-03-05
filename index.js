@@ -13,6 +13,7 @@ app.use(bodyParser.json());
 app.listen(config.PORT, _ => {
 	InitDb(_ => {
 		require('./routes/users')(app);
+		require('./routes/categories')(app);
 		console.log(`Server running on ${config.PORT}...`);
 	});
 });

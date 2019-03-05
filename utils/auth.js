@@ -13,7 +13,7 @@ exports.authenticate = (email, password) => {
 				if (match) resolve(user);
 				else reject('Authenticate failed');
 			});
-		} catch(err) {
+		} catch (err) {
 			reject('Authentication failed');
 		}
 	});

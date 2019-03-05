@@ -18,7 +18,7 @@ module.exports = {
 				try {
 					await user.save();
 					jsonResponse(res, 201, {message: 'User created successfully'});
-				} catch(err) {
+				} catch (err) {
 					jsonResponse(res, 424, {message: 'Failed to create new user'});
 				}
 			});
@@ -33,7 +33,7 @@ module.exports = {
 			const token = jwt.sign(user.toJSON(), config.JWT_SECRET, {expiresIn: '60min'});
 
 			jsonResponse(res, 201, {token});
-		} catch(err) {
+		} catch (err) {
 			jsonResponse(res, 403, {message: err});
 		}
 	}

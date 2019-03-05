@@ -1,17 +1,7 @@
 const mongoose = require('mongoose');
 const timestamp = require('mongoose-timestamp');
 
-const tirmedType = {
-	type: String,
-	required: true,
-	trim: true
-};
-
-const normalType = {
-	type: String,
-	required: true
-}
-
+const { trimedType, normalType } = require('./types');
 const avatarType = {
 	type: String,
 	trim: true,
@@ -19,8 +9,8 @@ const avatarType = {
 };
 
 const UserSchema = mongoose.Schema({
-	username: tirmedType,
-	email: tirmedType,
+	username: trimedType,
+	email: trimedType,
 	password: normalType,
 	avatar: avatarType
 });
