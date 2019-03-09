@@ -14,7 +14,7 @@ const App = ({fetchUser}) => {
   }, []);
 
   return (
-    <div className="App">
+    <div className="app">
       <BrowserRouter>
         <Suspense fallback={<div>Loading...</div>}>
           <Route exact path="/" render={_ => <div>App!!!</div>} />

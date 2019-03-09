@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
+import Field from '../../components/Field';
+import FormButton from '../../components/FormButton';
+import SwitchLink from '../../components/SwitchLink';
+import Logo from '../../components/Logo';
 import { authenticate } from '../../actions/auth';
 
 import './index.css';
@@ -16,19 +20,34 @@ const Login = ({authenticate}) => {
 	};
 
 	return (
-		<form onSubmit={handleSubmit}>
-			<input 
-				name="email" 
-				onChange={({target}) => handleChange(target.value, setEmail)}
-				placeholder="Email here"
-			/>
-			<input 
-				type="password" 
-				name="password" 
-				onChange={({target}) => handleChange(target.value, setPassword)} 
-			/>
-			<button type="submit">Login</button>
-		</form>
+		<div className="login flex center full">
+			<div className="logo__banner flex center">
+				<Logo />
+			</div>
+			<form 
+				className="login__form flex flex-column center" 
+				onSubmit={handleSubmit}>
+				<h1 className="title mr-none">Sign in</h1>
+				<h3 className="sub-title mr-none mrb-16">Enter your details below.</h3>
+
+				<Field 
+					name="email"
+					type="email"
+					handleChange={handleChange}
+					setter={setEmail}
+					placeholder="john@doe.com"
+				/>
+				<Field
+					name="password"
+					type="password"
+					handleChange={handleChange}
+					setter={setPassword}
+					placeholder="Enter your password"
+				/>
+				<FormButton type="submit" label="Sign In" />
+				<SwitchLink to="/register" label="Sign Up" />
+			</form>
+		</div>
 	);
 };
 
