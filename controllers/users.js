@@ -1,12 +1,16 @@
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 
 const User = require('../models/Users');
 const auth = require('../utils/auth');
 const jsonResponse = require('../utils/json-response');
-const config = require('../config');
+const { generateToken, verifyToken } = require('../utils/generate-token');
 
 module.exports = {
+	getUser: async (req, res, next) => {
+		const {user} = req;
+		jsonResponse(res, 200, {user});
+	},
+
 	resigter: (req, res, next) => {
 		const {username, email, password, avatar} = req.body;
 		const user = new User({username, email, password, avatar});
@@ -17,7 +21,9 @@ module.exports = {
 
 				try {
 					await user.save();
-					jsonResponse(res, 201, {message: 'User created successfully'});
+					const token = generateToken(user.toJSON());
+
+					jsonResponse(res, 201, {token});
 				} catch (err) {
 					jsonResponse(res, 424, {message: 'Failed to create new user'});
 				}
@@ -30,7 +36,7 @@ module.exports = {
 
 		try {
 			const user = await auth.authenticate(email, password);
-			const token = jwt.sign(user.toJSON(), config.JWT_SECRET, {expiresIn: '60min'});
+			const token = generateToken(user.toJSON());
 
 			jsonResponse(res, 201, {token});
 		} catch (err) {

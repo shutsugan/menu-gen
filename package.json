@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "client": "npm start --prefix client",
+    "watch": "concurrently \"npm run dev\" \"npm run client\"",
+    "debug": "node --inspect-brk index.js"
   },
   "keywords": [
     "menu"
@@ -15,7 +18,9 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
+    "concurrently": "^4.1.0",
     "express": "^4.16.4",
+    "http-proxy-middleware": "^0.19.1",
     "jsonwebtoken": "^8.5.0",
     "mongoose": "^5.4.17",
     "mongoose-timestamp": "^0.6.0"
