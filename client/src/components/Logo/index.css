@@ -1,0 +1,19 @@
+
+
+.logo {
+    font-family: 'Rajdhani', sans-serif;
+}
+
+.logo__box {
+    border: solid 5px var(--main);
+}
+
+.logo__box-top {
+    border-bottom: none;
+}
+
+.logo__char {
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding: 4px 8px;
+}
