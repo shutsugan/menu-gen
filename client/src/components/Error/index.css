@@ -1,0 +1,14 @@
+.error {
+  bottom: 16px;
+  right: 16px;
+  background: var(--secondary);
+  color: var(--main);
+  border-radius: var(--radius);
+  font-size: .9rem;
+  transition: opacity var(--duration) var(--transition);
+  cursor: pointer;
+}
+
+.error:hover {
+  opacity: .7;
+}
