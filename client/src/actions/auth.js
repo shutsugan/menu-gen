@@ -16,9 +16,7 @@ export const authenticate = (email, password) => async dispatch => {
 
 export const fetchUser = _ => async dispatch => {
 	const token = localStorage.getItem('token');
-	if (!token || token === '') {
-		return dispatch({type: SET_ERROR, payload: {error: 'No token provided'}});
-	}
+	if (!token || token === '') return;
 
 	try {
 		axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
