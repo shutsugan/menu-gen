@@ -30,6 +30,9 @@ const LoginFrom = ({authenticate}) => {
 						handleChange={handleChange}
 						setter={setEmail}
 						placeholder="john@doe.com"
+            required={true}
+            pattern={/\S+@\S+\.\S+/gm}
+            err="Wrong email format"
 					/>
 					<Field
 						name="password"
@@ -37,6 +40,9 @@ const LoginFrom = ({authenticate}) => {
 						handleChange={handleChange}
 						setter={setPassword}
 						placeholder="Enter your password"
+            required={true}
+            pattern={/.{4}/gm}
+            err="Must be more than 4 chars"
 					/>
 					<FormButton type="submit" label="Sign In" />
 					<SwitchLink to="/register" label="Sign Up" />
