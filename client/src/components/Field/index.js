@@ -1,21 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef, createRef } from 'react';
+import { connect } from 'react-redux';
 
 import './index.css';
 
-const Field = ({name, type, handleChange, setter, placeholder, required, pattern, err}) => {
+const Field = ({name, type, handleChange, setter, placeholder, required, pattern, err, auth}) => {
+    const inputRef = createRef();
+    const initMount = useRef(true);
     const [error, setError] = useState('');
-    const handleValidation = ({target}) => {
+
+    const handleValidation = ({target}) => validate(target.value);
+    const validate = value => {
       let message = '';
-      if (!target.value.match(pattern)) message = err
-      if (required && !target.value) message = 'Field is required';
+      if (!value.match(pattern)) message = err
+      if (required && !value) message = 'Field is required';
+      if (required && !value && auth.error) message = 'Field is required';
 
       setError(message);
-    };
+    }
+
+    useEffect(_ => {
+      if (!initMount.current) validate(inputRef.current.value);
+
+      initMount.current = false
+    });
 
     return (
         <div className="field flex flex-column start half mrb-16 relative">
             <label className="field__label">{name}</label>
             <input
+                ref={inputRef}
                 className={`field__input full pd-16
                   ${error ? 'field__input--error' : ''}
                 `}
@@ -24,6 +37,7 @@ const Field = ({name, type, handleChange, setter, placeholder, required, pattern
                 onChange={({target}) => handleChange(target.value, setter)}
                 onBlur={handleValidation}
                 placeholder={placeholder}
+                required={required}
             />
             {
               error &&
@@ -33,4 +47,5 @@ const Field = ({name, type, handleChange, setter, placeholder, required, pattern
     );
 };
 
-export default Field;
+const mapStateToProps = ({auth}) => ({auth});
+export default connect(mapStateToProps)(Field);
