@@ -1,0 +1,8 @@
+.registration {
+   height: 100vh;
+}
+
+.registration__form {
+    flex: 1;
+    height: 100%;
+}

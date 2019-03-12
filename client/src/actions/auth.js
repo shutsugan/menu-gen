@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { AUTH_USER, FETCH_USER, SET_ERROR } from './types';
+import { AUTH_USER, RIG_USER, FETCH_USER, SET_ERROR } from './types';
 
 export const authenticate = (email, password) => async dispatch => {
 	try {
@@ -11,6 +11,18 @@ export const authenticate = (email, password) => async dispatch => {
 	} catch ({response}) {
 		const error = response.data.message
 		dispatch({type: SET_ERROR, payload: {error}})
+	}
+};
+
+export const register = (username, email, password) => async dispatch => {
+	try {
+		const {data} = await axios.post('/api/register', {username, email, password});
+		dispatch({type: RIG_USER, payload: data});
+
+		localStorage.setItem('token', data.token);
+	} catch ({response}) {
+		const error = response.data.message;
+		dispatch({type: SET_ERROR, payload: {error}});
 	}
 };
 

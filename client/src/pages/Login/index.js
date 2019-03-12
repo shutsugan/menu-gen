@@ -8,7 +8,6 @@ import { authenticate } from '../../actions/auth';
 import './index.css';
 
 const Login = ({auth, authenticate}) => {
-
 	return !auth.token
 		? <LoginForm authenticate={authenticate} />
 		: <Redirect to="/" />

@@ -45,7 +45,11 @@ const LoginFrom = ({authenticate}) => {
             err="Must be more than 4 chars"
 					/>
 					<FormButton type="submit" label="Sign In" />
-					<SwitchLink to="/register" label="Sign Up" />
+					<SwitchLink
+            to="/register"
+            text="Don't have an account?"
+            label="Sign Up"
+          />
 				</form>
 			</div>
     );

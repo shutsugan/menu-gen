@@ -8,6 +8,7 @@ import { fetchUser } from '../../actions/auth';
 import './index.css';
 
 const Login = lazy(_ => import('../../pages/Login'));
+const Registration = lazy(_ => import('../../pages/Registration'));
 
 const App = ({fetchUser}) => {
   useEffect(_ => {fetchUser()}, []);
@@ -18,6 +19,7 @@ const App = ({fetchUser}) => {
         <Suspense fallback={<div>Loading...</div>}>
           <Route exact path="/" render={_ => <div>App!!!</div>} />
           <Route path="/login" render={_ => <Login />} />
+          <Route path="/register" render={_ => <Registration />} />
         </Suspense>
       </BrowserRouter>
       <Error />
