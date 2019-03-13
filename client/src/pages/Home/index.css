@@ -1,0 +1,12 @@
+.home {}
+
+.banner {
+  flex: 1;
+  height: 100vh;
+  background: var(--secondary);
+}
+
+.home__container {
+  flex: 3;
+  height: 100vh;
+}

@@ -1,6 +1,12 @@
 import axios from 'axios';
 
-import { AUTH_USER, RIG_USER, FETCH_USER, SET_ERROR } from './types';
+import {
+	AUTH_USER,
+	RIG_USER,
+	FETCH_USER,
+	SET_ERROR,
+	LOGOUT_USER
+} from './types';
 
 export const authenticate = (email, password) => async dispatch => {
 	try {
@@ -8,10 +14,16 @@ export const authenticate = (email, password) => async dispatch => {
 		dispatch({type: AUTH_USER, payload: data});
 
 		localStorage.setItem('token', data.token);
+		dispatch(fetchUser());
 	} catch ({response}) {
 		const error = response.data.message
 		dispatch({type: SET_ERROR, payload: {error}})
 	}
+};
+
+export const logout = _ => async dispatch => {
+	dispatch({type: LOGOUT_USER, payload: {token: null}});
+	localStorage.removeItem('token');
 };
 
 export const register = (username, email, password) => async dispatch => {
@@ -20,6 +32,7 @@ export const register = (username, email, password) => async dispatch => {
 		dispatch({type: RIG_USER, payload: data});
 
 		localStorage.setItem('token', data.token);
+		dispatch(fetchUser());
 	} catch ({response}) {
 		const error = response.data.message;
 		dispatch({type: SET_ERROR, payload: {error}});

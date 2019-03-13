@@ -28,10 +28,10 @@ const Field = ({name, type, handleChange, setter, placeholder, required, pattern
         <div className="field flex flex-column start half mrb-16 relative">
             <label className="field__label">{name}</label>
             <input
-                ref={inputRef}
                 className={`field__input full pd-16
                   ${error ? 'field__input--error' : ''}
                 `}
+                ref={inputRef}
                 name={name}
                 type={type}
                 onChange={({target}) => handleChange(target.value, setter)}
