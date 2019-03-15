@@ -1,0 +1,35 @@
+.meal-list {}
+
+.meal-details {
+  border-bottom: dashed 1px #ddd;
+  padding: 16px 82px;
+}
+
+.meal-details__wrapper {
+  align-items: center;
+}
+
+.meal-details__img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.meal-details__name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--main);
+  text-transform: uppercase;
+}
+
+.meal-details__text {
+  font-size: .9rem;
+  color: var(--main);
+  padding: 0 52px;
+}
+
+.meal-details__icons {
+  top: 16px;
+  right: 88px;
+}
