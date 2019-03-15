@@ -9,7 +9,7 @@ import MealList from '../../components/MealList';
 import './index.css';
 
 const Home = ({auth}) => (
-  <div className="home flex start full">
+  <div className="home flex start stretch full">
     <div className="banner flex start pd-16">
       <CategoryList />
     </div>
