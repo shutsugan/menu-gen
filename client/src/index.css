@@ -51,6 +51,11 @@ code {
   align-items: flex-end;
 }
 
+.space-between {
+  justify-content: space-between;
+  align-items: center;
+}
+
 .full {
   width: 100%;
 }

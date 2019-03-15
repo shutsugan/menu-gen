@@ -3,6 +3,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 const Transition = ({children, name, appear, duration}) => (
   <ReactCSSTransitionGroup
+    className="wd-auto"
     transitionName={name}
     transitionAppear={appear}
     transitionAppearTimeout={duration}

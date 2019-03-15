@@ -48,17 +48,14 @@ module.exports = {
 	},
 
 	setMeal: async (req, res, next) => {
-		//const user_id = req.user._id;
-
-		const {name, description, price, category_id, image} = req.body;
-		const user_id = '5c7d2bfe9074b547dfb639da';
+		const {name, description, price, category_id, user_id, image} = req.body;
 
 		try {
 			const meal = new Meal({
 				name,
 				description,
 				price,
-				image, 
+				image,
 				category_id,
 				user_id
 			});
@@ -74,7 +71,6 @@ module.exports = {
 		const data = req.body;
 		const {id} = req.params;
 		if (!id) jsonResponse(res, 400, {message: 'id not found'});
-
 
 		try {
 			const meal = await Meal.findByIdAndUpdate(id, {$set: data});
@@ -94,7 +90,7 @@ module.exports = {
 		try {
 			const meal = await Meal.findByIdAndRemove(id);
 			await meal.save();
-			
+
 			jsonResponse(res, 201, {meal});
 		} catch (err) {
 			jsonResponse(res, 424, {message: err.message});

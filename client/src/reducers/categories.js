@@ -1,6 +1,8 @@
 import {
   FETCH_CATEGORIES,
   SET_CATEGORY,
+  UPDATE_CATEGORY,
+  REMOVE_CATEGORY,
   SELECT_CATEGORY
 } from '../actions/types';
 
@@ -15,9 +17,21 @@ export default (state = initState, {type, payload}) => {
       return {...state, categories: payload.categories};
     case SET_CATEGORY:
       return {...state, categories: [...state.categories, payload.category]};
+    case UPDATE_CATEGORY:
+      const categories_updated = state.categories.map(category => {
+        if (category._id === payload.category._id) return payload.category;
+        else return category;
+      });
+
+      return {...state, categories: categories_updated};
+    case REMOVE_CATEGORY:
+      const categories_deleted = state.categories.filter(category => {
+        if (category.id !== payload.id) return category;
+      });
+
+      return {...state, categories: categories_deleted};
     case SELECT_CATEGORY:
-      console.log(payload.category)
-      return {...state, category: payload.category}
+      return {...state, category: payload.category};
     default: return state;
-  }
+  };
 };

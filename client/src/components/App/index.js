@@ -9,6 +9,8 @@ import Error from '../Error';
 import './index.css';
 
 const Home = lazy(_ => import('../../pages/Home'));
+const Category = lazy(_ => import('../../pages/Category'));
+const Meal = lazy(_ => import('../../pages/Meal'));
 const Login = lazy(_ => import('../../pages/Login'));
 const Registration = lazy(_ => import('../../pages/Registration'));
 
@@ -20,6 +22,8 @@ const App = ({fetchUser}) => {
       <BrowserRouter>
         <Suspense fallback={<div>Loading...</div>}>
           <Route exact path="/" render={_ => <Home />} />
+          <Route path="/category" render={_ => <Category />} />
+          <Route path="/meal" render={_ => <Meal />} />
           <Route path="/login" render={_ => <Login />} />
           <Route path="/register" render={_ => <Registration />} />
         </Suspense>

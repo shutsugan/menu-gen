@@ -19,7 +19,7 @@ module.exports = {
 
 		bcrypt.genSalt(10, (err, salt) => {
 			if (err) return jsonResponse(res, 400, {message: 'Operation failed'});
-			
+
 			bcrypt.hash(user.password, salt, async (err, hash) => {
 				user.password = hash;
 

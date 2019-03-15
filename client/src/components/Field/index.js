@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import './index.css';
 
-const Field = ({name, type, handleChange, setter, placeholder, required, pattern, err, auth}) => {
+const Field = ({name, type, value, handleChange, setter, placeholder, required, pattern, err, auth}) => {
     const inputRef = createRef();
     const initMount = useRef(true);
     const [error, setError] = useState('');
@@ -34,6 +34,7 @@ const Field = ({name, type, handleChange, setter, placeholder, required, pattern
                 ref={inputRef}
                 name={name}
                 type={type}
+                value={value}
                 onChange={({target}) => handleChange(target.value, setter)}
                 onBlur={handleValidation}
                 placeholder={placeholder}

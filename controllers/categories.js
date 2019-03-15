@@ -36,13 +36,10 @@ module.exports = {
 	},
 
 	setCategory: async (req, res, next) => {
-		//const user_id = req.user._id;
-
-		const {name, description, cover} = req.body;
-		const user_id = '5c7d2bfe9074b547dfb639da';
+		const {user_id, name, description, cover} = req.body;
 
 		try {
-			const category = new Category({name, description, cover, user_id});
+			const category = new Category({user_id, name, description, cover});
 			await category.save();
 
 			jsonResponse(res, 201, {category});
@@ -54,6 +51,7 @@ module.exports = {
 	updateCategory: async (req, res, next) => {
 		const data = req.body;
 		const {id} = req.params;
+
 		if (!id) return jsonResponse(res, 400, {message: 'Wrong category id'});
 
 		try {

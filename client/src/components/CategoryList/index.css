@@ -1,9 +1,32 @@
 .category-list {}
 
+.category-list__title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--title);
+    text-transform: uppercase;
+}
+
 .list__item {
-  border-bottom: dashed 1px var(--main);
   align-items: center;
   cursor: pointer;
+}
+
+.list__wrapper {
+    align-items: center;
+}
+
+.list__remove {
+  width: 20px;
+  height: 20px;
+  background: var(--main);
+  border-radius: 50%;
+  color: var(--secondary);
+}
+
+.list__remove p {
+  margin: 0;
+  margin-top: -2px;
 }
 
 .list__item:last-child {
@@ -18,7 +41,12 @@
 }
 
 .list__title {
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 1.2rem;
+  font-weight: 500;
   text-transform: uppercase;
+}
+
+.cancel-button {
+  background: var(--main);
+  color: var(--secondary);
 }

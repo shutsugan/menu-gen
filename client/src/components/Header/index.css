@@ -3,6 +3,16 @@
   box-shadow: 0 1px 2px 0 rgba(0,0,0,0.1);
 }
 
+.header__login {
+  line-height: 50px;
+  font-size: .7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: none;
+  margin-right: 16px;
+  color: var(--secondary);
+}
+
 .header__logout {
   border: none;
   background: transparent;

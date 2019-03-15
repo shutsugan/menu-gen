@@ -24,6 +24,7 @@ export const authenticate = (email, password) => async dispatch => {
 export const logout = _ => async dispatch => {
 	dispatch({type: LOGOUT_USER, payload: {token: null}});
 	localStorage.removeItem('token');
+	window.location = '/login';
 };
 
 export const register = (username, email, password) => async dispatch => {
@@ -51,7 +52,6 @@ export const fetchUser = _ => async dispatch => {
 
 		localStorage.setItem('token', token);
 	} catch (err) {
-		dispatch({type: SET_ERROR, payload: {error: 'Wrong data'}});
 		localStorage.removeItem('token');
 	}
 };
