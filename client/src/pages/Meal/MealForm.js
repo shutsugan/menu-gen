@@ -10,25 +10,25 @@ const MealForm = ({user_id, category, meal, setMeal, updateMeal}) => {
   const meal_name = meal ? meal.name : '';
   const meal_description = meal ? meal.description : '';
   const meal_price = meal ? meal.price : '';
-  const meal_cover = meal ? meal.cover : '';
+  const meal_image = meal ? meal.image : '';
 
   const [name, setName] = useState(meal_name);
   const [description, setDescription] = useState(meal_description);
   const [price, setPrice] = useState(meal_price);
-  const [cover, setCover] = useState(meal_cover);
+  const [image, setImage] = useState(meal_image);
 
   const handleChange = (value, setter) => setter(value);
   const handleSubmit = event => {
     event.preventDefault();
     meal
-      ? updateMeal(meal._id, {name, description, price, cover})
+      ? updateMeal(meal._id, {name, description, price, image})
       : setMeal({
           user_id,
           category_id: category._id,
           name,
           description,
           price,
-          cover
+          image
       });
   };
 
@@ -80,9 +80,9 @@ const MealForm = ({user_id, category, meal, setMeal, updateMeal}) => {
         name="cover"
         type="url"
         handleChange={handleChange}
-        setter={setCover}
-        value={cover}
-        placeholder="Category cover"
+        setter={setImage}
+        value={image}
+        placeholder="Meal image"
         required={true}
         pattern={/[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gm}
         err="Wrong url format"

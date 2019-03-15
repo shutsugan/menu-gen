@@ -19,3 +19,7 @@
   color: var(--main);
   text-transform: uppercase;
 }
+
+.category-details__text {
+  padding: 16px 66px;
+}

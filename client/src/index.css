@@ -164,6 +164,33 @@ code {
   position: absolute;
 }
 
+.list__remove {
+  width: 20px;
+  height: 20px;
+  background: var(--main);
+  border-radius: 50%;
+  color: var(--secondary);
+  cursor: pointer;
+}
+
+.list__remove p {
+  margin: 0;
+  margin-top: -2px;
+}
+
+.list__edit {
+  font-size: .7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: var(--main);
+  text-decoration: none;
+}
+
+.white {
+  color: #fff;
+}
+
 .fade-appear {
   opacity: 0.01;
 }

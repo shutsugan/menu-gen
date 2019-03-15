@@ -2,8 +2,9 @@ import React, { useRef } from 'react';
 import { connect } from 'react-redux';
 
 import { selectCategory, removeCategory } from '../../actions/categories';
+import { selectMeal } from '../../actions/meals';
 
-const CategoryItem = ({user, category, selectCategory, removeCategory}) => {
+const CategoryItem = ({user, category, selectCategory, removeCategory, selectMeal}) => {
   const item = useRef(null);
   const handleRemove = id => {
       if (window.confirm("Remove this category?")) {
@@ -12,12 +13,17 @@ const CategoryItem = ({user, category, selectCategory, removeCategory}) => {
       }
   };
 
+  const handleSelection = category => {
+    selectCategory(category);
+    selectMeal(null);
+  };
+
   return (
     <div
       ref={item}
       key={category._id}
       className="list__item flex  space-between pd-16"
-      onClick={_ => selectCategory(category)}>
+      onClick={_ => handleSelection(category)}>
       <div className="list__wrapper flex">
         <img className="list__img" src={category.cover} alt={category.name} />
         <span className="list__title mr-none mrl-16">{category.name}</span>
@@ -38,5 +44,5 @@ const CategoryItem = ({user, category, selectCategory, removeCategory}) => {
 const mapStateToProps = ({auth}) => ({user: auth.user});
 export default connect(
   mapStateToProps,
-  {selectCategory, removeCategory}
+  {selectCategory, removeCategory, selectMeal}
 )(CategoryItem);

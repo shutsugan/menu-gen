@@ -1,5 +1,7 @@
 import {
   FETCH_MEALS,
+  FETCH_MEALS_BY_CATEGORY,
+  FETCH_MEALS_BY_USER,
   SET_MEAL,
   UPDATE_MEAL,
   REMOVE_MEAL,
@@ -14,6 +16,8 @@ const initState = {
 export default (state = initState, {type, payload}) => {
   switch(type) {
     case FETCH_MEALS:
+    case FETCH_MEALS_BY_CATEGORY:
+    case FETCH_MEALS_BY_USER:
       return {...state, meals: payload.meals};
     case SET_MEAL:
       return {...state, meals: [...state.meals, payload.meal]};

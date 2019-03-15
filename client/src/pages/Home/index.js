@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Header from '../../components/Header';
 import CategoryList from '../../components/CategoryList';
 import CategoryDetails from '../../components/CategoryDetails';
+import MealList from '../../components/MealList';
 
 import './index.css';
 
@@ -14,8 +15,9 @@ const Home = ({auth}) => (
     </div>
     <div className="home__container flex flex-column start">
       <Header />
-      <div className="flex center full">
+      <div className="flex flex-column center full">
         <CategoryDetails />
+        <MealList />
       </div>
     </div>
   </div>
