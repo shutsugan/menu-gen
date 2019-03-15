@@ -1,0 +1,20 @@
+.category {}
+
+.category__banner {
+  flex: 1;
+  height: 100vh;
+  background: var(--secondary);
+}
+
+.banner__link {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--main);
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.category__form {
+  flex: 1;
+  height: 100vh;
+}
