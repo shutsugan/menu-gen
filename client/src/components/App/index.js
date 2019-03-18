@@ -9,11 +9,10 @@ import Loader from '../Loader';
 
 import './index.css';
 
-const Home = lazy(_ => import('../../pages/Home'));
-const Category = lazy(_ => import('../../pages/Category'));
-const Meal = lazy(_ => import('../../pages/Meal'));
-const Login = lazy(_ => import('../../pages/Login'));
-const Registration = lazy(_ => import('../../pages/Registration'));
+const pages = ['Home', 'Category', 'Meal', 'Login', 'Registration'];
+const [
+  Home, Category, Meal, Login, Registration
+] = pages.map(page => lazy(_ => import(`../../pages/${page}`)));
 
 const App = ({fetchUser}) => {
   useEffect(_ => {fetchUser()}, []);
