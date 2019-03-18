@@ -3,8 +3,10 @@ import { connect } from 'react-redux';
 
 import Field from '../../components/Field';
 import FormButton from '../../components/FormButton';
+import FormHead from '../../components/FormHead';
+import SwitchLink from '../../components/SwitchLink';
 
-import { setCategory, updateCategory } from '../../actions/categories';
+import * as actions from '../../actions/categories';
 
 const CategoryForm = ({user_id, category, setCategory, updateCategory}) => {
   const cat_name = category ? category.name : '';
@@ -17,10 +19,10 @@ const CategoryForm = ({user_id, category, setCategory, updateCategory}) => {
 
   const handleChange = (value, setter) => setter(value);
   const handleSubmit = event => {
-      event.preventDefault();
-      category
-        ? updateCategory(category._id, {name, description, cover})
-        : setCategory({user_id, name, description, cover});
+    event.preventDefault();
+    category
+      ? updateCategory(category._id, {name, description, cover})
+      : setCategory({user_id, name, description, cover});
   };
 
   const banner = category === null
@@ -31,9 +33,7 @@ const CategoryForm = ({user_id, category, setCategory, updateCategory}) => {
     <form
       onSubmit={handleSubmit}
       className="category__form flex flex-column center">
-      <h1 className="title mr-none">Category</h1>
-      <h3 className="sub-title mr-none mrb-16">{banner}</h3>
-
+      <FormHead title="Category" slug={banner} />
       <Field
         name="name"
         type="type"
@@ -68,12 +68,14 @@ const CategoryForm = ({user_id, category, setCategory, updateCategory}) => {
         err="Wrong url format"
       />
       <FormButton type="submit" label="Save Category" />
+      <SwitchLink
+        to="/"
+        text="Cancel and back"
+        label="Home"
+      />
     </form>
   );
 };
 
 const mapStateToProps = ({categories}) => ({category: categories.category});
-export default connect(
-  mapStateToProps,
-  {setCategory, updateCategory}
-)(CategoryForm);
+export default connect(mapStateToProps, actions)(CategoryForm);

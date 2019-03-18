@@ -29,6 +29,10 @@ code {
     monospace;
 }
 
+a {
+  text-decoration: none;
+}
+
 .flex {
   display: flex;
 }

@@ -10,9 +10,7 @@ import './index.css';
 
 const Home = ({auth}) => (
   <div className="home flex start stretch full">
-    <div className="banner flex start pd-16">
-      <CategoryList />
-    </div>
+    <div className="banner flex start pd-16"><CategoryList /></div>
     <div className="home__container flex flex-column start">
       <Header />
       <div className="flex flex-column center full">

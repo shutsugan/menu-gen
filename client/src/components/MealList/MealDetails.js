@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import {updateMeal, removeMeal, selectMeal} from '../../actions/meals';
+import * as actions from '../../actions/meals';
 
 const MealDetails = ({user, meal, updateMeal, removeMeal, selectMeal}) => {
   const item = useRef('');
@@ -44,4 +44,4 @@ const MealDetails = ({user, meal, updateMeal, removeMeal, selectMeal}) => {
 };
 
 const mapStateToProps = ({auth}) => ({user: auth.user});
-export default connect(mapStateToProps, {updateMeal, removeMeal, selectMeal})(MealDetails);
+export default connect(mapStateToProps, actions)(MealDetails);

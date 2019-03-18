@@ -2,19 +2,19 @@ import React from 'react';
 
 import './index.css';
 
-const Logo = _ => (
+const Logo = _ => {
+  const makeLogo = word => word.split('').map(letter => (
+    <span key={letter} className="logo__char flex center">{letter}</span>
+  ));
+
+  return (
     <div className="logo">
         <div className="logo__box logo__box-top flex flex-column">
-            <span className="logo__char">M</span>
-            <span className="logo__char">E</span>
-            <span className="logo__char">N</span>
-            <span className="logo__char">U</span>
+            {makeLogo('MENU')}
         </div>
-        <div className="logo__box flex flex-column">
-            <span className="logo__char">G</span>
-            <span className="logo__char">N</span>
-        </div>
+        <div className="logo__box flex flex-column">{makeLogo('GN')}</div>
     </div>
-);
+  );
+}
 
 export default Logo;

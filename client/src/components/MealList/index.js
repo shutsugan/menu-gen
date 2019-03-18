@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import MealDetails from './MealDetails';
-import { fetchUserMeals, fetchCategoryMeals } from '../../actions/meals';
+import * as actions from '../../actions/meals';
 
 import './index.css';
 
-const MealList = ({user, category, meals, fetchMfetchUserMealseals, fetchCategoryMeals}) => {
+const MealList = ({user, category, meals, fetchUserMeals, fetchCategoryMeals}) => {
   useEffect(_ => {
       if (category) fetchCategoryMeals(category._id);
       else if (user) fetchUserMeals(user.id);
@@ -22,7 +22,4 @@ const mapStateToProps = ({auth, meals, categories}) => ({
   meals: meals.meals
 });
 
-export default connect(
-  mapStateToProps,
-  {fetchUserMeals, fetchCategoryMeals}
-)(MealList);
+export default connect(mapStateToProps, actions)(MealList);

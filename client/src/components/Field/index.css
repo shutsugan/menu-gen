@@ -1,11 +1,12 @@
 .field {}
 
-.field__label {
+.field__label,
+.required {
     text-transform: capitalize;
     color: var(--label);
 }
 
-.field__label::after {
+.required::after {
     content: '*';
     color: var(--secondary);
 }

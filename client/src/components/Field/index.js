@@ -3,7 +3,18 @@ import { connect } from 'react-redux';
 
 import './index.css';
 
-const Field = ({name, type, value, handleChange, setter, placeholder, required, pattern, err, auth}) => {
+const Field = ({
+  name,
+  type,
+  value,
+  handleChange,
+  setter,
+  placeholder,
+  required,
+  pattern,
+  err,
+  auth
+}) => {
     const inputRef = createRef();
     const initMount = useRef(true);
     const [error, setError] = useState('');
@@ -26,7 +37,9 @@ const Field = ({name, type, value, handleChange, setter, placeholder, required, 
 
     return (
         <div className="field flex flex-column start half mrb-16 relative">
-            <label className="field__label">{name}</label>
+            <label className={`${required ? 'required': 'field__label'}`}>
+              {name}
+            </label>
             <input
                 className={`field__input full pd-16
                   ${error ? 'field__input--error' : ''}

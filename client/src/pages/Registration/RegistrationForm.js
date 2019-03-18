@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import Field from '../../components/Field';
 import FormButton from '../../components/FormButton';
+import FormHead from '../../components/FormHead';
 import SwitchLink from '../../components/SwitchLink';
 import Banner from '../../components/Banner';
 
@@ -23,9 +24,7 @@ const RegistrationForm = ({register}) => {
       <form
         className="registration__form flex flex-column center"
         onSubmit={handleSubmit}>
-        <h1 className="title mr-none">Sign Up</h1>
-        <h3 className="sub-title mr-none mrb-16">Let's get you all set up.</h3>
-
+        <FormHead title="Sign Up" slug="Let's get you all set up." />
         <Field
           name="username"
           type="text"

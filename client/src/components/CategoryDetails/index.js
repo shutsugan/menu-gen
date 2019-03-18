@@ -16,7 +16,9 @@ const CategoryDetails = ({category}) => category && (
       />
       <div className="category-details__name mrl-16">{category.name}</div>
     </div>
-    <div className="category-details__text flex start">{category.description}</div>
+    <div className="category-details__text flex start">
+      {category.description}
+    </div>
     </Transition>
   </div>
 );

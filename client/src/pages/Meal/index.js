@@ -3,6 +3,7 @@ import { Redirect, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import MealForm from './MealForm';
+import Banner from '../../components/Banner';
 
 import './index.css';
 
@@ -11,9 +12,7 @@ const Meal = ({user}) => {
 
   return (
     <div className="meal flex full">
-      <div className="meal__banner center flex">
-        <Link className="banner__link" to="/">Back to home page</Link>
-      </div>
+      <div className="meal__banner center flex"><Banner /></div>
       <MealForm user_id={user.id} />
     </div>
   );

@@ -1,7 +1,6 @@
-
-
 .logo {
     font-family: 'Rajdhani', sans-serif;
+    color: var(--main);
 }
 
 .logo__box {

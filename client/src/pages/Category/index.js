@@ -3,6 +3,7 @@ import { Redirect, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import CategoryForm from './CategoryForm';
+import Banner from '../../components/Banner';
 
 import './index.css';
 
@@ -11,9 +12,7 @@ const Category = ({user}) => {
 
   return (
     <div className="category flex full">
-      <div className="category__banner center flex">
-        <Link className="banner__link" to="/">Back to home page</Link>
-      </div>
+      <div className="category__banner center flex"><Banner /></div>
       <CategoryForm user_id={user.id} />
     </div>
   );

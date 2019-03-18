@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import LoginForm from './LoginForm';
-import { authenticate } from '../../actions/auth';
+import * as actions from '../../actions/auth';
 
 import './index.css';
 
@@ -14,4 +14,4 @@ const Login = ({auth, authenticate}) => {
 };
 
 const mapStateToProps = ({auth}) => ({auth});
-export default connect(mapStateToProps, {authenticate})(Login);
+export default connect(mapStateToProps, actions)(Login);

@@ -3,8 +3,10 @@ import { connect } from 'react-redux';
 
 import Field from '../../components/Field';
 import FormButton from '../../components/FormButton';
+import FormHead from '../../components/FormHead';
+import SwitchLink from '../../components/SwitchLink';
 
-import { setMeal, updateMeal } from '../../actions/meals';
+import * as actions from '../../actions/meals';
 
 const MealForm = ({user_id, category, meal, setMeal, updateMeal}) => {
   const meal_name = meal ? meal.name : '';
@@ -40,9 +42,7 @@ const MealForm = ({user_id, category, meal, setMeal, updateMeal}) => {
     <form
       onSubmit={handleSubmit}
       className="meal__form flex flex-column center">
-      <h1 className="title mr-none">Meal</h1>
-      <h3 className="sub-title mr-none mrb-16">{banner}</h3>
-
+      <FormHead title="Meal" slug={banner} />
       <Field
         name="name"
         type="type"
@@ -88,6 +88,11 @@ const MealForm = ({user_id, category, meal, setMeal, updateMeal}) => {
         err="Wrong url format"
       />
       <FormButton type="submit" label="Save Meal" />
+      <SwitchLink
+        to="/"
+        text="Cancel and back"
+        label="Home"
+      />
     </form>
   );
 };
@@ -97,7 +102,4 @@ const mapStateToProps = ({categories, meals}) => ({
   meal: meals.meal
 });
 
-export default connect(
-  mapStateToProps,
-  {setMeal, updateMeal}
-)(MealForm);
+export default connect(mapStateToProps, actions)(MealForm);

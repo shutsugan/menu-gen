@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { fetchCategories, selectCategory } from '../../actions/categories';
+import * as actions from '../../actions/categories';
 import Transition from '../Transition';
 import CategoryItem from './CategoryItem';
 
@@ -55,7 +55,4 @@ const mapStateToProps = ({auth, categories}) => ({
   user: auth.user
 });
 
-export default connect(
-  mapStateToProps,
-  {fetchCategories, selectCategory}
-)(CategoryList);
+export default connect(mapStateToProps, actions)(CategoryList);
