@@ -105,6 +105,10 @@ a {
   margin-left: 16px;
 }
 
+.mrr-16 {
+  margin-right: 16px;
+}
+
 .title {
   text-transform: uppercase;
   font-size: 1.3rem;

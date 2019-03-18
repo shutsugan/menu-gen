@@ -2,11 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { logout } from '../../actions/auth';
+import { logout, googleLogout } from '../../actions/auth';
 
 import './index.css';
 
-const Header = ({auth, logout}) => {
+const Header = ({auth, logout, googleLogout}) => {
   if (!auth.user) return (
     <div className="header flex end full pd-8">
       <Link className="header__login" to="/login">Login</Link>
@@ -24,4 +24,4 @@ const Header = ({auth, logout}) => {
 };
 
 const mapStateToProps = ({auth}) => ({auth});
-export default connect(mapStateToProps, {logout})(Header);
+export default connect(mapStateToProps, {logout, googleLogout})(Header);

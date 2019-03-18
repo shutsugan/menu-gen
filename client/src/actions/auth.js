@@ -1,11 +1,15 @@
 import axios from 'axios';
 
+import googlAuth from '../utils/google-config.js';
+
 import {
 	AUTH_USER,
 	RIG_USER,
 	FETCH_USER,
 	SET_ERROR,
-	LOGOUT_USER
+	LOGOUT_USER,
+	GOOGLE_AUTH,
+	GOOGLE_LOGOUT
 } from './types';
 
 export const authenticate = (email, password) => async dispatch => {
@@ -54,4 +58,19 @@ export const fetchUser = _ => async dispatch => {
 	} catch (err) {
 		localStorage.removeItem('token');
 	}
+};
+
+export const googleAuth = user => dispatch => {
+	//TODO: check if the user already exists and return the user obj
+	//if not register the user and return the user obj
+	//then dispatch the user obj.
+	dispatch({type: GOOGLE_AUTH, payload: {user}});
+};
+
+export const googleLogout = _ => dispatch => {
+	dispatch({type: GOOGLE_LOGOUT, payload: {user: null}});
+	googlAuth(_ => window.gapi.auth2.getAuthInstance().signOut());
+
+	localStorage.removeItem('token');
+	window.location = '/login';
 };
