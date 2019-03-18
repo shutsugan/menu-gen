@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { fetchUser } from '../../actions/auth';
 
 import Error from '../Error';
+import Loader from '../Loader';
 
 import './index.css';
 
@@ -20,7 +21,7 @@ const App = ({fetchUser}) => {
   return (
     <div className="app relative">
       <BrowserRouter>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Loader />}>
           <Route exact path="/" render={_ => <Home />} />
           <Route path="/category" render={_ => <Category />} />
           <Route path="/meal" render={_ => <Meal />} />
