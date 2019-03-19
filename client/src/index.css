@@ -230,3 +230,9 @@ a {
   opacity: 0.01;
   transition: opacity var(--duration) var(--transition);
 }
+
+@media only screen and (max-width: 615px) {
+  .half {
+    width: 90%;
+  }
+}

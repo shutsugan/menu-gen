@@ -10,3 +10,13 @@
   flex: 1;
   min-height: 100vh;
 }
+
+@media only screen and (max-width: 870px) {
+  .home {
+    flex-direction: column !important;
+  }
+
+  .banner {
+    min-height: 100% !important;
+  }
+}

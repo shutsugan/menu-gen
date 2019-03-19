@@ -7,6 +7,10 @@
     text-transform: uppercase;
 }
 
+.category-list__buttons {
+  flex-wrap: wrap;
+}
+
 .list__item {
   align-items: center;
   cursor: pointer;
@@ -36,4 +40,10 @@
 .cancel-button {
   background: var(--main);
   color: var(--secondary);
+}
+
+@media only screen and (max-width: 870px) {
+  .category-list__buttons {
+    justify-content: center;
+  }
 }

@@ -1,5 +1,3 @@
-.category {}
-
 .category__banner {
   flex: 1;
   height: 100vh;
@@ -17,4 +15,10 @@
 .category__form {
   flex: 1;
   height: 100vh;
+}
+
+@media only screen and (max-width: 870px) {
+  .category {
+    flex-direction: column-reverse;
+  }
 }

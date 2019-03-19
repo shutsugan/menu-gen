@@ -18,7 +18,7 @@ const CategoryList = ({categories, category, user, fetchCategories, selectCatego
   return (
     <div className="category-list flex flex-column end full pdt-16">
       <div className="category-list__buttons flex space-between full mrb-16">
-        <h2 className="category-list__title mr-none">Categories List</h2>
+        <h2 className="category-list__title mr-none mrr-16">Categories List</h2>
         <Transition name="fade" appear={true} duration={150}>
           {
             user &&
