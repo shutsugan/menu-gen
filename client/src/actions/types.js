@@ -4,7 +4,7 @@ export const LOGOUT_USER = 'LOGOUT_USER';
 export const RIG_USER = 'RIG_USER';
 export const FETCH_USER = 'FETCH_USER';
 export const GOOGLE_AUTH = 'GOOGLE_AUTH';
-export const GOOGLE_LOGOUT = 'GOOGLE_LOGOUT';
+export const GOOGLE_RIG = 'GOOGLE_RIG';
 
 export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
 export const SET_CATEGORY = 'SET_CATEGORY';

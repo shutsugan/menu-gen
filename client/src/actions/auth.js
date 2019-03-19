@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-import googlAuth from '../utils/google-config.js';
+import googlAuth from '../utils/google-config';
+import { addToken, removeToken } from '../utils/token';
+import { setException } from '../utils/exception';
 
 import {
 	AUTH_USER,
@@ -9,38 +11,42 @@ import {
 	SET_ERROR,
 	LOGOUT_USER,
 	GOOGLE_AUTH,
-	GOOGLE_LOGOUT
+	GOOGLE_RIG
 } from './types';
 
 export const authenticate = (email, password) => async dispatch => {
 	try {
 		const {data} = await axios.post('/api/auth', {email, password});
-		dispatch({type: AUTH_USER, payload: data});
-
-		localStorage.setItem('token', data.token);
-		dispatch(fetchUser());
+		addToken(AUTH_USER, data, dispatch, fetchUser);
 	} catch ({response}) {
-		const error = response.data.message
-		dispatch({type: SET_ERROR, payload: {error}})
+		setException(response.data.message, SET_ERROR, dispatch);
 	}
-};
-
-export const logout = _ => async dispatch => {
-	dispatch({type: LOGOUT_USER, payload: {token: null}});
-	localStorage.removeItem('token');
-	window.location = '/login';
 };
 
 export const register = (username, email, password) => async dispatch => {
 	try {
 		const {data} = await axios.post('/api/register', {username, email, password});
-		dispatch({type: RIG_USER, payload: data});
-
-		localStorage.setItem('token', data.token);
-		dispatch(fetchUser());
+		addToken(RIG_USER, data, dispatch, fetchUser);
 	} catch ({response}) {
-		const error = response.data.message;
-		dispatch({type: SET_ERROR, payload: {error}});
+		setException(response.data.message, SET_ERROR, dispatch);
+	}
+};
+
+export const googleAuth = ({email, password}) => async dispatch => {
+	try {
+		const {data} = await axios.post('/api/auth', {email, password});
+		addToken(GOOGLE_AUTH, data, dispatch, fetchUser);
+	} catch ({response}) {
+		setException(response.data.message, SET_ERROR, dispatch);
+	}
+};
+
+export const googleRegister = user => async dispatch => {
+	try {
+		const {data} = await axios.post('/api/register', user);
+		addToken(GOOGLE_RIG, data, dispatch, fetchUser);
+	} catch ({response}) {
+		setException(response.data.message, SET_ERROR, dispatch);
 	}
 };
 
@@ -60,17 +66,8 @@ export const fetchUser = _ => async dispatch => {
 	}
 };
 
-export const googleAuth = user => dispatch => {
-	//TODO: check if the user already exists and return the user obj
-	//if not register the user and return the user obj
-	//then dispatch the user obj.
-	dispatch({type: GOOGLE_AUTH, payload: {user}});
-};
-
-export const googleLogout = _ => dispatch => {
-	dispatch({type: GOOGLE_LOGOUT, payload: {user: null}});
-	googlAuth(_ => window.gapi.auth2.getAuthInstance().signOut());
-
-	localStorage.removeItem('token');
-	window.location = '/login';
+export const logout = _ => async dispatch => {
+	removeToken(LOGOUT_USER, {token: null}, dispatch, _ => {
+		window.gapi.auth2.getAuthInstance().signOut();
+	});
 };

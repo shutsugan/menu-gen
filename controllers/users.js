@@ -15,22 +15,28 @@ module.exports = {
 
 	resigter: (req, res, next) => {
 		const {username, email, password, avatar} = req.body;
-		const user = new User({username, email, password, avatar});
 
-		bcrypt.genSalt(10, (err, salt) => {
-			if (err) return jsonResponse(res, 400, {message: 'Operation failed'});
+		User.find({email}, (err, user) => {
+			if (user.length) {
+				return jsonResponse(res, 403, {message: 'Email already exists'});
+			}
 
-			bcrypt.hash(user.password, salt, async (err, hash) => {
-				user.password = hash;
+			const new_user = new User({username, email, password, avatar});
+			bcrypt.genSalt(10, (err, salt) => {
+				if (err) return jsonResponse(res, 400, {message: 'Operation failed'});
 
-				try {
-					await user.save();
-					const token = generateToken(user.toJSON());
+				bcrypt.hash(new_user.password, salt, async (err, hash) => {
+					new_user.password = hash;
 
-					jsonResponse(res, 201, {token});
-				} catch (err) {
-					jsonResponse(res, 424, {message: 'Failed to create new user'});
-				}
+					try {
+						await new_user.save();
+						const token = generateToken(new_user.toJSON());
+
+						jsonResponse(res, 201, {token});
+					} catch (err) {
+						jsonResponse(res, 424, {message: 'Failed to create new user'});
+					}
+				});
 			});
 		});
 	},
