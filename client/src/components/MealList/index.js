@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 
 import MealDetails from './MealDetails';
 import * as actions from '../../actions/meals';
+import { getUser } from '../../reducers/auth';
+import { getCategory } from '../../reducers/categories';
+import { getMeals } from '../../reducers/meals';
 
 import './index.css';
 
@@ -16,10 +19,10 @@ const MealList = ({user, category, meals, fetchUserMeals, fetchCategoryMeals}) =
   return <div className="meal-list flex flex-column full">{list}</div>;
 };
 
-const mapStateToProps = ({auth, meals, categories}) => ({
-  user: auth.user,
-  category: categories.category,
-  meals: meals.meals
+const mapStateToProps = state => ({
+  user: getUser(state),
+  category: getCategory(state),
+  meals: getMeals(state)
 });
 
 export default connect(mapStateToProps, actions)(MealList);

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import * as actions from '../../actions/meals';
+import { getUser } from '../../reducers/auth';
 
 const MealDetails = ({user, meal, updateMeal, removeMeal, selectMeal}) => {
   const item = useRef('');
@@ -14,7 +15,9 @@ const MealDetails = ({user, meal, updateMeal, removeMeal, selectMeal}) => {
   };
 
   return (
-    <div ref={item} className="meal-details flex flex-column start full relative pd-16">
+    <div
+      ref={item}
+      className="meal-details flex flex-column start full relative pd-16">
       <div className="meal-details__wrapper flex">
         <img className="meal-details__img" src={meal.image} alt={meal.name} />
         <h3 className="meal-details__name mrl-16">{meal.name}</h3>
@@ -43,5 +46,5 @@ const MealDetails = ({user, meal, updateMeal, removeMeal, selectMeal}) => {
   );
 };
 
-const mapStateToProps = ({auth}) => ({user: auth.user});
+const mapStateToProps = state => ({user: getUser(state)});
 export default connect(mapStateToProps, actions)(MealDetails);

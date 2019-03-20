@@ -3,17 +3,18 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { logout } from '../../actions/auth';
+import { getUser } from '../../reducers/auth';
 
 import './index.css';
 
-const Header = ({auth, logout}) => {
-  if (!auth.user) return (
+const Header = ({user, logout}) => {
+  if (!user) return (
     <div className="header flex end full pd-8">
       <Link className="header__login" to="/login">Login</Link>
     </div>
   );
 
-  const {username, avatar} = auth.user;
+  const {username, avatar} = user;
   return (
     <div className="header flex end full pd-8">
       <button className="header__logout" onClick={_ => logout()}>Logout</button>
@@ -23,5 +24,5 @@ const Header = ({auth, logout}) => {
   );
 };
 
-const mapStateToProps = ({auth}) => ({auth});
+const mapStateToProps = state => ({user: getUser(state)});
 export default connect(mapStateToProps, {logout})(Header);
