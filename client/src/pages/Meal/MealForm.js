@@ -7,6 +7,8 @@ import FormHead from '../../components/FormHead';
 import SwitchLink from '../../components/SwitchLink';
 
 import * as actions from '../../actions/meals';
+import { getCategory } from '../../reducers/categories';
+import { getMeal } from '../../reducers/meals';
 
 const MealForm = ({user_id, category, meal, setMeal, updateMeal}) => {
   const meal_name = meal ? meal.name : '';
@@ -97,9 +99,9 @@ const MealForm = ({user_id, category, meal, setMeal, updateMeal}) => {
   );
 };
 
-const mapStateToProps = ({categories, meals}) => ({
-  category: categories.category,
-  meal: meals.meal
+const mapStateToProps = state => ({
+  category: getCategory(state),
+  meal: getMeal(state)
 });
 
 export default connect(mapStateToProps, actions)(MealForm);

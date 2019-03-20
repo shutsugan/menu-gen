@@ -1,9 +1,11 @@
 import React from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import MealForm from './MealForm';
 import Banner from '../../components/Banner';
+
+import { getUser } from '../../reducers/auth';
 
 import './index.css';
 
@@ -18,5 +20,5 @@ const Meal = ({user}) => {
   );
 };
 
-const mapStateToProps = ({auth}) => ({user: auth.user});
+const mapStateToProps = state => ({user: getUser(state)});
 export default connect(mapStateToProps)(Meal);

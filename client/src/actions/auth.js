@@ -68,6 +68,6 @@ export const fetchUser = _ => async dispatch => {
 
 export const logout = _ => async dispatch => {
 	removeToken(LOGOUT_USER, {token: null}, dispatch, _ => {
-		window.gapi.auth2.getAuthInstance().signOut();
+		if (window.gapi.auth2) window.gapi.auth2.getAuthInstance().signOut();
 	});
 };
