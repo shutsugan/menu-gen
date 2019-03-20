@@ -3,15 +3,16 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import LoginForm from './LoginForm';
-import * as actions from '../../actions/auth';
+import { authenticate } from '../../actions/auth';
+import { getToken } from '../../reducers/auth';
 
 import './index.css';
 
-const Login = ({auth, authenticate}) => {
-	return !auth.token
+const Login = ({token, authenticate}) => {
+	return !token
 		? <LoginForm authenticate={authenticate} />
 		: <Redirect to="/" />
 };
 
-const mapStateToProps = ({auth}) => ({auth});
-export default connect(mapStateToProps, actions)(Login);
+const mapStateToProps = state => ({token: getToken(state)});
+export default connect(mapStateToProps, {authenticate})(Login);

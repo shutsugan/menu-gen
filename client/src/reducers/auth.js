@@ -18,9 +18,11 @@ const initState = {
 
 const user = state => state.auth.user;
 const error = state => state.auth.error;
+const token = state => state.auth.token;
 
 export const getUser = createSelector([user], user => user);
 export const getError = createSelector([error], error => error);
+export const getToken = createSelector([token], token => token);
 
 export default (state = initState, {type, payload}) => {
 	switch(type) {
