@@ -3,22 +3,23 @@ import { connect } from 'react-redux';
 
 import Transition from '../Transition';
 import { SET_ERROR } from '../../actions/types';
+import { getError } from '../../reducers/auth';
 
 import './index.css';
 
-const Error = ({auth, dispatch}) => {
+const Error = ({error, dispatch}) => {
   const clearError = _ => dispatch({type: SET_ERROR, payload: {error: ''}});
 
-  return auth.error
+  return error
     ? (
       <Transition name="fade" appear={true} duration={150}>
         <div onClick={clearError} className="error absolute pd-16">
-          {auth.error}
+          {error}
         </div>
       </Transition>
     )
     : '';
 };
 
-const mapStateToProps = ({auth}) => ({auth})
+const mapStateToProps = state => ({error: getError(state)});
 export default connect(mapStateToProps)(Error);

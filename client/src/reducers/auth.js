@@ -17,7 +17,10 @@ const initState = {
 };
 
 const user = state => state.auth.user;
+const error = state => state.auth.error;
+
 export const getUser = createSelector([user], user => user);
+export const getError = createSelector([error], error => error);
 
 export default (state = initState, {type, payload}) => {
 	switch(type) {

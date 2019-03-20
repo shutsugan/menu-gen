@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef, createRef } from 'react';
 import { connect } from 'react-redux';
 
+import { getError } from '../../reducers/auth';
+
 import './index.css';
 
 const Field = ({
@@ -13,7 +15,7 @@ const Field = ({
   required,
   pattern,
   err,
-  auth
+  authError
 }) => {
     const inputRef = createRef();
     const initMount = useRef(true);
@@ -24,16 +26,16 @@ const Field = ({
       let message = '';
       if (!value.match(pattern)) message = err
       if (required && !value) message = 'Field is required';
-      if (required && !value && auth.error) message = 'Field is required';
+      if (required && !value && authError) message = 'Field is required';
 
       setError(message);
     }
 
     useEffect(_ => {
-      if (!initMount.current) validate(inputRef.current.value);
+      if (!initMount.current) {}
 
       initMount.current = false
-    });
+    }, [error]);
 
     return (
         <div className="field flex flex-column start half mrb-16 relative">
@@ -61,5 +63,5 @@ const Field = ({
     );
 };
 
-const mapStateToProps = ({auth}) => ({auth});
+const mapStateToProps = state => ({authError: getError(state)});
 export default connect(mapStateToProps)(Field);
