@@ -1,3 +1,5 @@
+import { createSelector } from 'reselect';
+
 import {
   FETCH_MEALS,
   FETCH_MEALS_BY_CATEGORY,
@@ -12,6 +14,12 @@ const initState = {
   meals: [],
   meal: null,
 };
+
+const meals = state => state.meals.meals;
+const meal = state => state.meals.meal;
+
+export const getMeals = createSelector([meals], meals => meals);
+export const getMeal = createSelector([meal], meal => meal);
 
 export default (state = initState, {type, payload}) => {
   switch(type) {

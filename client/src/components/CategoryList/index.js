@@ -2,9 +2,11 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import * as actions from '../../actions/categories';
 import Transition from '../Transition';
 import CategoryItem from './CategoryItem';
+import * as actions from '../../actions/categories';
+import { getCategories, getCategory } from '../../reducers/categories';
+import { getUser } from '../../reducers/auth';
 
 import './index.css';
 
@@ -49,10 +51,10 @@ const CategoryList = ({categories, category, user, fetchCategories, selectCatego
   );
 };
 
-const mapStateToProps = ({auth, categories}) => ({
-  categories: categories.categories,
-  category: categories.category,
-  user: auth.user
+const mapStateToProps = state => ({
+  categories: getCategories(state),
+  category: getCategory(state),
+  user: getUser(state)
 });
 
 export default connect(mapStateToProps, actions)(CategoryList);

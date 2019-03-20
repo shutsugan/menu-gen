@@ -1,3 +1,5 @@
+import { createSelector } from 'reselect';
+
 import {
   FETCH_CATEGORIES,
   SET_CATEGORY,
@@ -10,6 +12,12 @@ const initState = {
   categories: [],
   category: null,
 };
+
+const categories = state => state.categories.categories;
+const category = state => state.categories.category;
+
+export const getCategories = createSelector([categories], categories => categories);
+export const getCategory = createSelector([category], category => category);
 
 export default (state = initState, {type, payload}) => {
   switch(type) {

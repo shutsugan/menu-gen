@@ -1,3 +1,5 @@
+import { createSelector } from 'reselect';
+
 import {
 	AUTH_USER,
 	RIG_USER,
@@ -13,6 +15,9 @@ const initState = {
 	token: null,
 	error: null
 };
+
+const user = state => state.auth.user;
+export const getUser = createSelector([user], user => user);
 
 export default (state = initState, {type, payload}) => {
 	switch(type) {
