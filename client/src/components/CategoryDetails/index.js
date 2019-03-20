@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Transition from '../Transition';
+import { getCategory } from '../../reducers/categories';
 
 import './index.css';
 
@@ -23,5 +24,5 @@ const CategoryDetails = ({category}) => category && (
   </div>
 );
 
-const mapStateToProps = ({categories}) => ({category: categories.category});
+const mapStateToProps = state => ({category: getCategory(state)});
 export default connect(mapStateToProps)(CategoryDetails);
