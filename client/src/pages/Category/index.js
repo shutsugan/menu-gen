@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import CategoryForm from './CategoryForm';
 import Banner from '../../components/Banner';
 
+import { getUser } from '../../reducers/auth';
+
 import './index.css';
 
 const Category = ({user}) => {
@@ -18,5 +20,5 @@ const Category = ({user}) => {
   );
 };
 
-const mapStateToProps = ({auth}) => ({user: auth.user});
+const mapStateToProps = state => ({user: getUser(state)});
 export default connect(mapStateToProps)(Category);

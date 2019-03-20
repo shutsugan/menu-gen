@@ -7,6 +7,7 @@ import FormHead from '../../components/FormHead';
 import SwitchLink from '../../components/SwitchLink';
 
 import * as actions from '../../actions/categories';
+import { getCategory } from '../../reducers/categories';
 
 const CategoryForm = ({user_id, category, setCategory, updateCategory}) => {
   const cat_name = category ? category.name : '';
@@ -77,5 +78,5 @@ const CategoryForm = ({user_id, category, setCategory, updateCategory}) => {
   );
 };
 
-const mapStateToProps = ({categories}) => ({category: categories.category});
+const mapStateToProps = state => ({category: getCategory(state)});
 export default connect(mapStateToProps, actions)(CategoryForm);
