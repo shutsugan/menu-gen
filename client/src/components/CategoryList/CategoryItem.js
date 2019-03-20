@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { selectCategory, removeCategory } from '../../actions/categories';
 import { selectMeal } from '../../actions/meals';
+import { getUser } from '../../reducers/auth';
 
 const CategoryItem = ({user, category, selectCategory, removeCategory, selectMeal}) => {
   const item = useRef(null);
@@ -41,7 +42,7 @@ const CategoryItem = ({user, category, selectCategory, removeCategory, selectMea
   );
 }
 
-const mapStateToProps = ({auth}) => ({user: auth.user});
+const mapStateToProps = state => ({user: getUser(state)});
 export default connect(
   mapStateToProps,
   {selectCategory, removeCategory, selectMeal}
