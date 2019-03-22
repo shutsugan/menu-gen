@@ -14,7 +14,7 @@ const [
   Home, Category, Meal, Login, Registration
 ] = pages.map(page => lazy(_ => import(`../../pages/${page}`)));
 
-const App = ({fetchUser}) => {
+export const App = ({fetchUser}) => {
   useEffect(_ => {fetchUser()}, []);
 
   return (
