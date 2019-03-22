@@ -17,7 +17,7 @@ const setup = _ => {
   return {wrapper};
 };
 
-describe('component App', () => {
+describe('component CategoryDetails', () => {
   const { wrapper } = setup();
 
   it ('should render self', () => {

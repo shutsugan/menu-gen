@@ -5,7 +5,7 @@ import { selectCategory, removeCategory } from '../../actions/categories';
 import { selectMeal } from '../../actions/meals';
 import { getUser } from '../../reducers/auth';
 
-const CategoryItem = ({user, category, selectCategory, removeCategory, selectMeal}) => {
+export const CategoryItem = ({user, category, selectCategory, removeCategory, selectMeal}) => {
   const item = useRef(null);
   const handleRemove = id => {
       if (window.confirm("Remove this category?")) {
