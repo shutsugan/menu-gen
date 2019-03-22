@@ -8,7 +8,7 @@ import {
   SELECT_CATEGORY
 } from '../actions/types';
 
-const initState = {
+export const initState = {
   categories: [],
   category: null,
 };
