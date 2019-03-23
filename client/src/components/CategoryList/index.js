@@ -10,7 +10,7 @@ import { getUser } from '../../reducers/auth';
 
 import './index.css';
 
-const CategoryList = ({categories, category, user, fetchCategories, selectCategory}) => {
+export const CategoryList = ({categories, category, user, fetchCategories, selectCategory}) => {
   useEffect(_ => {fetchCategories()}, []);
 
   const list = categories.map(category => (

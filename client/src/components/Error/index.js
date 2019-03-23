@@ -7,7 +7,7 @@ import { getError } from '../../reducers/auth';
 
 import './index.css';
 
-const Error = ({error, dispatch}) => {
+export const Error = ({error, dispatch}) => {
   const clearError = _ => dispatch({type: SET_ERROR, payload: {error: ''}});
 
   return error
