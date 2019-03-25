@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Enzyme, { mount } from 'enzyme';
 import { expect } from 'chai';
 import Adapter from 'enzyme-adapter-react-16';
