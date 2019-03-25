@@ -5,7 +5,7 @@ import { getError } from '../../reducers/auth';
 
 import './index.css';
 
-const Field = ({
+export const Field = ({
   name,
   type,
   value,
