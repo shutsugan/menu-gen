@@ -7,7 +7,7 @@ import { getUser } from '../../reducers/auth';
 
 import './index.css';
 
-const Header = ({user, logout}) => {
+export const Header = ({user, logout}) => {
   if (!user) return (
     <div className="header flex end full pd-8">
       <Link className="header__login" to="/login">Login</Link>

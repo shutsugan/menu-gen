@@ -1,7 +1,6 @@
 import React from 'react';
-import google_auth from '../../utils/google-config.js'
 import {mount, expect as chaiExpect} from '../../utils/test-config';
-import GoogleAuthRender from './GoogleAuthRender.js';
+import GoogleAuthRender from './GoogleAuthRender';
 
 const setup = _ => {
   const googleLogin = jest.fn();
