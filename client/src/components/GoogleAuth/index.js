@@ -2,16 +2,19 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import Google from '../../Google.svg';
+import GoogleAuthRender from './GoogleAuthRender';
+
 import google_auth from '../../utils/google-config.js'
 import { googleAuth, googleRegister } from '../../actions/auth';
 
 import './index.css';
 
-class GoogleAuth extends Component {
+export class GoogleAuth extends Component {
   state = {signIn: false};
 
   componentDidMount() {
+    this.auth = null;
+    
     google_auth(_ => {
       this.auth = window.gapi.auth2.getAuthInstance();
       this.setState({signIn: this.auth.isSignedIn.get()});
@@ -47,14 +50,10 @@ class GoogleAuth extends Component {
     if (this.state.signIn) return <Redirect to="/" />;
 
     return (
-      <div className="google-auth full flex center mrb-16">
-        <button
-          onClick={this.googleLogin}
-          className="button button__google half flex center pd-16">
-          <img className="mrr-16" src={Google} alt="google logo" />
-          {this.renderButtontext()}
-        </button>
-      </div>
+      <GoogleAuthRender
+        googleLogin={this.googleLogin}
+        renderButtontext={this.renderButtontext}
+      />
     );
   }
 };
