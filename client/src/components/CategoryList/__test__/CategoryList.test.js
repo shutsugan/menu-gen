@@ -1,10 +1,6 @@
 import React from 'react';
-import Enzyme, { shallow } from 'enzyme';
-import { expect } from 'chai';
-import Adapter from 'enzyme-adapter-react-16';
+import {shallow, expect} from '../../../utils/test-config';
 import { CategoryList } from '../index.js';
-
-Enzyme.configure({adapter: new Adapter()});
 
 const setup = _ => {
   const user = {name: 'user'};

@@ -1,10 +1,6 @@
 import React from 'react';
-import Enzyme, { mount } from 'enzyme';
-import { expect } from 'chai';
-import Adapter from 'enzyme-adapter-react-16';
+import {mount, expect} from '../../utils/test-config';
 import { Field } from './index.js';
-
-Enzyme.configure({adapter: new Adapter()});
 
 const setup = _ => {
   const wrapper = mount(
