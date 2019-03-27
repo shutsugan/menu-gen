@@ -2,14 +2,6 @@ import React from 'react';
 import {mount, expect as chaiExpect} from '../../utils/test-config';
 import { Header } from './index.js';
 
-const thunk = ({ dispatch, getState }) => next => action => {
-  if (typeof action === 'function') {
-    return action(dispatch, getState)
-  }
-
-  return next(action)
-}
-
 const setup = _ => {
   let user = {username: 'name', avatar: 'avatar'};
   const logout = jest.fn();
