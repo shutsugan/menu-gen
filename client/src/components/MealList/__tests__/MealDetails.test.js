@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import {mount, expect} from '../../../utils/test-config';
-import { MealDetails } from '../MealDetails.js';
+import { MealDetails } from '../MealDetails';
 
 const setup = _ => {
   const user = {name: 'user'};
