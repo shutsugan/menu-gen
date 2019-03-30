@@ -2,7 +2,7 @@ import React from 'react';
 
 import './index.css';
 
-const Logo = _ => {
+const Logo = ({name, sub}) => {
   const makeLogo = word => word.split('').map(letter => (
     <span key={letter} className="logo__char flex center">{letter}</span>
   ));
@@ -10,9 +10,11 @@ const Logo = _ => {
   return (
     <div className="logo">
         <div className="logo__box logo__box-top flex flex-column">
-            {makeLogo('MENU')}
+            {makeLogo(name)}
         </div>
-        <div className="logo__box flex flex-column">{makeLogo('GN')}</div>
+        <div className="logo__box logo__box-bottom flex flex-column">
+          {makeLogo(sub)}
+        </div>
     </div>
   );
 }

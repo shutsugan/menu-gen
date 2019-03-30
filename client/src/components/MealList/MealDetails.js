@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions/meals';
 import { getUser } from '../../reducers/auth';
 
-const MealDetails = ({user, meal, updateMeal, removeMeal, selectMeal}) => {
+export const MealDetails = ({user, meal, updateMeal, removeMeal, selectMeal}) => {
   const item = useRef('');
   const handleRemove = id => {
     if (window.confirm('Want to remove the meal?')) {
@@ -21,9 +21,9 @@ const MealDetails = ({user, meal, updateMeal, removeMeal, selectMeal}) => {
       <div className="meal-details__wrapper flex">
         <img className="meal-details__img" src={meal.image} alt={meal.name} />
         <h3 className="meal-details__name mrl-16">{meal.name}</h3>
-        <p className="meal-details__text">{`$${meal.price}`}</p>
+        <p className="meal-details__text meal-price">{`$${meal.price}`}</p>
       </div>
-      <p className="meal-details__text mrl-16">{meal.description}</p>
+      <p className="meal-details__text meal-desc mrl-16">{meal.description}</p>
       {
         user && (
           <div className="meal-details__icons flex center absolute">

@@ -9,7 +9,7 @@ import { getMeals } from '../../reducers/meals';
 
 import './index.css';
 
-const MealList = ({user, category, meals, fetchUserMeals, fetchCategoryMeals}) => {
+export const MealList = ({user, category, meals, fetchUserMeals, fetchCategoryMeals}) => {
   useEffect(_ => {
       if (category) fetchCategoryMeals(category._id);
       else if (user) fetchUserMeals(user.id);

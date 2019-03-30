@@ -7,7 +7,7 @@ import './index.css';
 
 const Banner = _ => (
   <div className="logo__banner flex center">
-    <Link to="/"><Logo /></Link>
+    <Link to="/"><Logo name="MENU" sub="GN" /></Link>
   </div>
 );
 export default Banner;
