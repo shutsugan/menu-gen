@@ -31,4 +31,6 @@ npm run debug
 
 ### App screenshot
 
+![app screenshot](https://github.com/shutsugan/menu-gen/blob/master/login.png)
+
 ![app screenshot](https://github.com/shutsugan/menu-gen/blob/master/app.png)
