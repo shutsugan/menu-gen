@@ -1,14 +1,6 @@
-import configureMockStore from 'redux-mock-store'
-import thunk from 'redux-thunk'
-import axios from 'axios';
-import MockAdapter from 'axios-mock-adapter'
-
+import { mockStore, fetchMock } from '../test-config.js';
 import * as actions from '../categories';
 import * as types from '../types';
-
-const middlewares = [thunk];
-const mockStore = configureMockStore(middlewares);
-const fetchMock = new MockAdapter(axios);
 
 const getErrorAction = (error, action, callback) => {
   fetchMock.onAny(/\/^api\/category\/.*/).timeoutOnce();

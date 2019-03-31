@@ -19,7 +19,7 @@ export const authenticate = (email, password) => async dispatch => {
 		const {data} = await axios.post('/api/auth', {email, password});
 		addToken(AUTH_USER, data, dispatch, fetchUser);
 	} catch ({response}) {
-		setException(response.data.message, SET_ERROR, dispatch);
+		setException('Enable to authenticate', SET_ERROR, dispatch);
 	}
 };
 
@@ -28,7 +28,7 @@ export const register = (username, email, password) => async dispatch => {
 		const {data} = await axios.post('/api/register', {username, email, password});
 		addToken(RIG_USER, data, dispatch, fetchUser);
 	} catch ({response}) {
-		setException(response.data.message, SET_ERROR, dispatch);
+		setException('Enable to register', SET_ERROR, dispatch);
 	}
 };
 
@@ -37,7 +37,7 @@ export const googleAuth = ({email, password}) => async dispatch => {
 		const {data} = await axios.post('/api/auth', {email, password});
 		addToken(GOOGLE_AUTH, data, dispatch, fetchUser);
 	} catch ({response}) {
-		setException(response.data.message, SET_ERROR, dispatch);
+		setException('Enable to authenticate with google auth', SET_ERROR, dispatch);
 	}
 };
 
@@ -46,7 +46,7 @@ export const googleRegister = user => async dispatch => {
 		const {data} = await axios.post('/api/register', user);
 		addToken(GOOGLE_RIG, data, dispatch, fetchUser);
 	} catch ({response}) {
-		setException(response.data.message, SET_ERROR, dispatch);
+		setException('Enable to authenticate with google auth', SET_ERROR, dispatch);
 	}
 };
 
@@ -63,6 +63,7 @@ export const fetchUser = _ => async dispatch => {
 		localStorage.setItem('token', token);
 	} catch (err) {
 		localStorage.removeItem('token');
+		setException('Enable to fetch user', SET_ERROR, dispatch);
 	}
 };
 
