@@ -10,7 +10,7 @@ import {
 	GOOGLE_RIG
 } from '../actions/types';
 
-const initState = {
+export const initState = {
 	user: null,
 	token: null,
 	error: null
