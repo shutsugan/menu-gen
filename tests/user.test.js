@@ -1,24 +1,14 @@
-const chai = require('chai');
-const chaiHttp = require('chai-http');
-const app = require('../app');
-const expect = chai.expect;
-
-const initDb = require('../models');
+const {request, chaiHttp, expect, initDb} = require('./test_helper');
 const User = require('../models/Users');
 
-chai.use(chaiHttp);
-chai.should();
-
 describe('User', () => {
-  const url = 'http://localhost:4000';
-  const request = chai.request(url);
   const data = {
     username: 'John Doe',
     email: 'email@gmail.com',
     password: 'root'
   };
 
-  before(done => initDb(_ => done()));
+  before(done => initDb(done));
   after(done => {
     User.deleteOne({email: data.email}, (err) => done())
   });
