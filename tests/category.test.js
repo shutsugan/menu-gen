@@ -7,6 +7,16 @@ const {
 } = require('./test_helper');
 const Category = require('../models/categories');
 
+const getCategories = async (err, res, query) => {
+  const categories = await Category.find(query);
+
+   expect(err).to.be.null;
+   expect(res).to.be.json;
+   expect(res).to.have.status(200);
+   expect(res.body.categories).should.be.a('object');
+   expect(res.body.categories.length).to.equal(categories.length);
+};
+
 describe('Category', _ => {
   const user_id = '5c90fe0e7fd68f61c8185715';
   const data = {
@@ -51,14 +61,8 @@ describe('Category', _ => {
     it ('should get categories by user id', done => {
       request
         .get(`/api/${user_id}/categories`)
-        .end(async (err, res) => {
-         const categories = await Category.find({user_id});
-
-          expect(err).to.be.null;
-          expect(res).to.be.json;
-          expect(res).to.have.status(200);
-          expect(res.body.categories).should.be.a('object');
-          expect(res.body.categories.length).to.equal(categories.length);
+        .end((err, res) => {
+          getCategories(err, res, {user_id});
           done();
         });
     });
@@ -72,6 +76,15 @@ describe('Category', _ => {
             res,
             500,
             'Cast to ObjectId failed for value "1" at path "user_id" for model "Category"');
+          done();
+        });
+    });
+
+    it ('should get all categories', done => {
+      request
+        .get('/api/categories')
+        .end((err, res) => {
+          getCategories(err, res, {});
           done();
         });
     });
