@@ -1,4 +1,10 @@
-const {request, chaiHttp, expect, initDb} = require('./test_helper');
+const {
+  request,
+  chaiHttp,
+  expect,
+  initDb,
+  expectedError
+} = require('./test_helper');
 const User = require('../models/Users');
 
 describe('User', () => {
@@ -33,10 +39,7 @@ describe('User', () => {
         .get('/api/user')
         .set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0.60KALZI_44D6Qo48UUQ2YHl57ZailPdQU73pzg9KUc8')
         .end((err, res) => {
-          expect(err).to.be.null;
-          expect(res).to.have.status(401);
-          expect(res.body).should.be.a('object');
-          expect(res.body.message).to.equal('Register first!!');
+          expectedError(expect, res, 401, 'Register first!!');
           done();
         });
     });
@@ -45,10 +48,7 @@ describe('User', () => {
       request
         .get('/api/user')
         .end((err, res) => {
-          expect(err).to.be.null;
-          expect(res).to.have.status(401);
-          expect(res.body).should.be.a('object');
-          expect(res.body.message).to.equal('User not found');
+          expectedError(expect, res, 401, 'User not found');
           done();
         });
     });
@@ -71,8 +71,7 @@ describe('User', () => {
         .post('/api/register')
         .send(data)
         .then(res => {
-          expect(res).to.have.status('403');
-          expect(res.body.message).to.equal('Email already exists');
+          expectedError(expect, res, 403, 'Email already exists');
           done();
         });
     });
@@ -95,8 +94,7 @@ describe('User', () => {
         .post('/api/auth')
         .send({})
         .then(res => {
-          expect(res).to.have.status(403);
-          expect(res.body.message).to.equal('Authentication failed');
+          expectedError(expect, res, 403, 'Authentication failed');
           done();
         });
     });

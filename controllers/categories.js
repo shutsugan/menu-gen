@@ -4,7 +4,7 @@ const jsonResponse = require('../utils/json-response');
 module.exports = {
 	getUserCategories: async (req, res, next) => {
 		const {user_id} = req.params;
-		if (!user_id) return jsonResponse(res, 400, {message: 'Wrong user id'});
+		if (!user_id) return jsonResponse(res, 400, {message: 'Id not found'});
 
 		try {
 			const categories = await Category.find({user_id});
@@ -25,7 +25,7 @@ module.exports = {
 
 	getCategory: async (req, res, next) => {
 		const {id} = req.params;
-		if (!id) return jsonResponse(res, 400, {message: 'Wrong category id'});
+		if (!id) return jsonResponse(res, 400, {message: 'Id not found'});
 
 		try {
 			const category = await Category.findById(id);
@@ -58,7 +58,8 @@ module.exports = {
 			const category = await Category.findByIdAndUpdate(id, {$set: data});
 			await category.save();
 
-			jsonResponse(res, 201, {category});
+			const new_category = await Category.findById(id);
+			jsonResponse(res, 201, {new_category});
 		} catch (err) {
 			jsonResponse(res, 424, {message: 'Failed to update new category'});
 		}
