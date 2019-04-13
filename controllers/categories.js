@@ -59,7 +59,7 @@ module.exports = {
 			await category.save();
 
 			const new_category = await Category.findById(id);
-			jsonResponse(res, 201, {new_category});
+			jsonResponse(res, 201, {category: new_category});
 		} catch (err) {
 			jsonResponse(res, 424, {message: 'Failed to update new category'});
 		}

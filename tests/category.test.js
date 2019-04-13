@@ -97,8 +97,8 @@ describe('Category', _ => {
         .send({description: 'updated description'})
         .then(res => {
           expect(res).to.have.status(201);
-          expect(res.body.new_category).should.be.a('object');
-          expect(res.body.new_category.description).to.equal('updated description');
+          expect(res.body.category).should.be.a('object');
+          expect(res.body.category.description).to.equal('updated description');
           done();
         });
     });
@@ -114,7 +114,7 @@ describe('Category', _ => {
     });
   });
 
-  describe('delete category', () => {
+  describe('Delete category', () => {
     it ('should delete the category', done => {
       request
         .del(`/api/category/${category_id}`)

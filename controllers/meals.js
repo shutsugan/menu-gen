@@ -76,7 +76,8 @@ module.exports = {
 			const meal = await Meal.findByIdAndUpdate(id, {$set: data});
 			await meal.save();
 
-			jsonResponse(res, 201, {meal});
+			const new_meal = await Meal.findById(id);
+			jsonResponse(res, 201, {meal: new_meal});
 		} catch (err) {
 			jsonResponse(res, 424, {message: err.message});
 		}
